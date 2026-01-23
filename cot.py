@@ -42,6 +42,7 @@ SYSTEM_PROMPT = """
  
 
 """
+print("\n\n\n")
 
 message_history=[
     {"role":"system","content":SYSTEM_PROMPT},
@@ -66,37 +67,9 @@ while True:
     if parsed_result.get("step")=="PLAN":
         print("🧠",parsed_result.get("content"))
         
-
-response = client.chat.completions.create(
+    if parsed_result.get("step")=="OUTPUT":
+        print("🤖",parsed_result.get("content"))
+        break
+        
     
-    model="llama-3.1-8b-instant",
-    response_format={"type":"json_object"},
-    messages=[
-        {"role":"system","content":SYSTEM_PROMPT},
-        {"role": "user", "content":"Hey,write a code to add n numbers in js" },
-        {"role":"assistant","content":json.dumps({
-            "step":"PLAN",
-            "content":"We need to write a JavaScript function to add n numbers"
-        })},
-         {"role":"assistant","content":json.dumps({
-            "step":"PLAN",
-            "content": "The function will take an array of numbers as input, so the function declaration will be like addNumbers(arr) or simply add(arr)"
-        })},
-         
-        {"role":"assistant","content":json.dumps({
-            "step":"PLAN",
-            "content": "We will use the reduce() method of the array to add all the numbers in it and return the result"
-        })},
-        
-        {"role":"assistant","content":json.dumps({
-            "step":"PLAN",
-            "content": "Here's a sample JavaScript function: \nfunction add(arr) { \nreturn arr.reduce((total, number) => { return total + number; }); \n}"
-        })},
-         
-         
-         
-        
-    ] 
-)
-
-print(response.choices[0].message.content)
+print("\n\n\n")

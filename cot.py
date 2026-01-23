@@ -17,7 +17,7 @@ SYSTEM_PROMPT = """
  -strictl Follow the given JSON format
  -Only run one step at a time.
  -The sequence of steps is START(where user gives an input),PLAN(That can 
- be multiple times) nd finally OUTPUT(whic is going to be displayed to the 
+ be multiple times) and finally OUTPUT(which is going to be displayed to the 
  user).
  Output JSON Format:
  {"step":"START"|"PLAN"|"OUTPUT","content":"string"}
